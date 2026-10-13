@@ -1,0 +1,49 @@
+{
+  "mcpServers": {
+    "AgentsRoom-MCP": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\alisa\\AppData\\Local\\Programs\\AgentsRoom\\resources\\app-mcp-server.cjs"
+      ],
+      "env": {
+        "AR_PROJECT_ID": "proj-1791818541505-893elo",
+        "AR_PROJECT_PATH": "D:\\Template\\developer-portfolio",
+        "AR_API_BASE_URL": "https://agentsroom.dev",
+        "AR_SETTINGS_FILE": "C:\\Users\\alisa\\.agentsroom\\settings.json",
+        "AR_BRIDGE_FILE": "C:\\Users\\alisa\\.agentsroom\\browser-bridge.json"
+      }
+    },
+    "AgentsRoom-Test-Runner": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\alisa\\AppData\\Local\\Programs\\AgentsRoom\\resources\\test-runner-mcp-server.cjs"
+      ],
+      "env": {
+        "AR_BROWSER_BRIDGE_FILE": "C:\\Users\\alisa\\.agentsroom\\browser-bridge.json",
+        "AR_BROWSER_PROJECT_ID": "proj-1791818541505-893elo",
+        "AR_PROJECT_PATH": "D:\\Template\\developer-portfolio"
+      }
+    },
+    "AgentsRoom-QA-Tester": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\alisa\\AppData\\Local\\Programs\\AgentsRoom\\resources\\qa-tester-mcp-server.cjs"
+      ],
+      "env": {
+        "AR_BROWSER_BRIDGE_FILE": "C:\\Users\\alisa\\.agentsroom\\browser-bridge.json",
+        "AR_BROWSER_PROJECT_ID": "proj-1791818541505-893elo"
+      }
+    },
+    "AgentsRoom-Chrome": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\alisa\\AppData\\Local\\Programs\\AgentsRoom\\resources\\browser-mcp-server.cjs"
+      ],
+      "env": {
+        "AR_BROWSER_BRIDGE_FILE": "C:\\Users\\alisa\\.agentsroom\\browser-bridge.json",
+        "AR_BROWSER_PROJECT_ID": "proj-1791818541505-893elo",
+        "AR_BROWSER_KIND": "chrome"
+      }
+    }
+  }
+}

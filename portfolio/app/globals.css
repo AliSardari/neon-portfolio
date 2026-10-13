@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep: #050b1f;
+  --color-bg-mid: #0b1a3e;
+  --color-accent: #3b82f6;
+  --color-accent-2: #22d3ee;
+  --color-ink: #f8fafc;
+  --color-ink-dim: rgba(226, 232, 240, 0.65);
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+  --font-sans: var(--font-vazir), Tahoma, "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(120% 90% at 50% 0%, #0b1a3e 0%, #050b1f 55%, #071233 100%)
+    fixed var(--color-bg-deep);
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 4px;
+}
+
+/* ---------- کامپوننت‌های مشترک ---------- */
+
+.glass {
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #3b82f6, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kicker-line {
+  height: 1px;
+  width: 2rem;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8));
+}
+
+/* ---------- انیمیشن‌ها ---------- */
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, -4%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-5%, 5%, 0) scale(0.94);
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes panel-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anim-spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+.anim-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-node {
+  animation: fade-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.anim-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-line 1.1s ease-out both;
+}
+
+.anim-dot {
+  animation: dot-pulse 3s ease-in-out infinite;
+}
+
+.anim-blob {
+  animation: blob-drift 18s ease-in-out infinite;
+}
+
+.anim-caret {
+  animation: caret-blink 1s step-end infinite;
+}
+
+/* پنل محتوا: در RTL از راست و در LTR از چپ باز می‌شود */
+@keyframes panel-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes panel-out-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.panel-in-rtl {
+  animation: panel-in-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.panel-out-rtl {
+  animation: panel-out-right 0.3s ease-in both;
+}
+
+.panel-in-ltr {
+  animation: panel-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.panel-out-ltr {
+  animation: panel-out 0.3s ease-in both;
+}
+
+/* ---------- نئون آبی دور دایره‌ها ---------- */
+
+.neon-glow {
+  box-shadow:
+    0 0 6px rgba(34, 211, 238, 0.7),
+    0 0 16px rgba(59, 130, 246, 0.55),
+    0 0 40px rgba(59, 130, 246, 0.35),
+    0 0 90px rgba(59, 130, 246, 0.22),
+    inset 0 0 14px rgba(59, 130, 246, 0.28);
+}
+
+.neon-ring {
+  position: relative;
+}
+
+/* حلقه‌ی نورانی چرخان که دور تا دور دایره جاری می‌شود */
+.neon-ring::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from 180deg,
+    rgba(34, 211, 238, 0) 0deg,
+    rgba(34, 211, 238, 0.95) 90deg,
+    rgba(59, 130, 246, 0.95) 190deg,
+    rgba(59, 130, 246, 0) 300deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.85;
+  animation: spin-slow 6s linear infinite;
+  pointer-events: none;
+}
+
+.group:hover .neon-ring::before,
+.group:focus-visible .neon-ring::before {
+  opacity: 1;
+}
+
+.backdrop-in {
+  animation: backdrop-in 0.3s ease both;
+}
+
+.backdrop-out {
+  animation: backdrop-in 0.3s ease reverse both;
+}
+
+/* با احترام به تنظیم «کاهش حرکت» سیستم: همه حرکت‌ها حذف می‌شوند */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
